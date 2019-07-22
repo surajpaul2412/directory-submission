@@ -1,11 +1,14 @@
 <?php
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('landing.home');
+// });
+
+Route::get('/', 'LandingController@index');
+
+Route::get('/home', 'LandingController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['as'=>'admin.','prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admin']], function(){
 	Route::get('dashboard','DashboardController@index')->name('dashboard');
@@ -21,7 +24,10 @@ Route::group(['as'=>'verifier.','prefix'=>'verifier','namespace'=>'Verifier','mi
 	Route::get('dashboard','DashboardController@index')->name('dashboard');
 	Route::resource('category', 'CategoryController');
 	Route::resource('verifylisting', 'VerifyListingController');
+	Route::resource('verifiedlisting', 'VerifiedListingController');
 });
+
 
 Route::resource('/listing', 'ListingController');
 Route::resource('/latest', 'LatestController');
+Route::resource('/homecategory', 'HomeCategoryController');

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Verifier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Listing;
+use App\Category;
+Use \Carbon\Carbon;
 
 class VerifyListingController extends Controller
 {
@@ -15,9 +17,10 @@ class VerifyListingController extends Controller
      */
     public function index()
     {
-        $listings = Listing::all();
+        $listings = Listing::select("*")->whereNull('verified_by')->get();
+        $category = Category::all();
 
-        return view('verifier.verifylisting.index', compact('listings'));
+        return view('verifier.verifylisting.index', compact('listings','category'));
     }
 
     /**
@@ -60,7 +63,9 @@ class VerifyListingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $listing = Listing::find($id);
+
+        return view('verifier.verifylisting.edit', compact('listing'));
     }
 
     /**
@@ -72,7 +77,15 @@ class VerifyListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+      ]);
+
+      $listing = Listing::find($id);
+      $listing->verified_by = $request->get('verified_by');
+      $listing->verified_on = $date = Carbon::now();
+      $listing->save();
+
+      return redirect('/verifier/verifylisting')->with('success', 'listing has been verified');
     }
 
     /**

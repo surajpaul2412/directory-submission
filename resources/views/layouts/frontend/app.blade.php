@@ -1,126 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<html lang="zxx" class="no-js">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Page Title -->
     <title>Directory Submission</title>
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.min.css') }}">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,700,900" rel="stylesheet">
-    <!-- Simple line Icon -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/simple-line-icons.css') }}">
-    <!-- Themify Icon -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/themify-icons.css') }}">
-    <!-- Hover Effects -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/set1.css') }}">
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/frontend/css/style.css') }}">
-</head>
-<body>
-    <div id="app">
-        <main>
-            <div class="nav-menu">
-                <div class="bg transition">
-                    <div class="container-fluid fixed">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <nav class="navbar navbar-expand-lg navbar-light">
-                                    <a class="navbar-brand" href="{{ route('home') }}">Directory Submission</a>
-                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="icon-menu"></span>
-                      </button>
-                                    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
-                                        <ul class="navbar-nav">
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link" href="{{ route('home') }}">
-                                                    Home
-                                                </a>
-                                            </li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link" href="{{ route('listing.index') }}">
-                                                    Submit Link
-                                                </a>
-                                            </li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link" href="{{ route('latest.index') }}">
-                                                    Latest Link
-                                                </a>
-                                            </li>
-                                            <li class="nav-item dropdown">
-                                                <a class="nav-link" href="#">
-                                                    Top Link
-                                                </a>
-                                            </li>
-                                            <li class="nav-item active">
-                                                <a class="nav-link" href="#">About Us</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Contact</a>
-                                            </li>
-                                            <li class="nav-link">
-                                                @guest
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="" data-toggle="modal" data-target="#ModalLogin">{{ __('Login') }}</a>
-                                                    </li>
-                                                    @if (Route::has('register'))
-                                                        <li class="nav-item">
-                                                            <a class="nav-link" href="" data-toggle="modal" data-target="#ModalRegister">{{ __('Register') }}</a>
-                                                        </li>
-                                                    @endif
-                                                @else
-                                                    <li class="nav-item dropdown">
-                                                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                                            {{ Auth::user()->name }} <span class="caret"></span>
-                                                        </a>
-                                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                                            onclick="event.preventDefault();
-                                                            document.getElementById('logout-form').submit();">
-                                                            {{ __('Logout') }}
-                                                            </a>
-                                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                                @csrf
-                                                            </form>
-                                                        </div>
-                                                    </li>
-                                                @endguest
-                                            </li>
-                                        </ul>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/linearicons.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/bootstrap.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/nice-select.css') }}">                  
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/frontend/css/main.css') }}">
+        <style>
+          .bold{
+            font-weight: bold;
+            text-transform: capitalize;
+          }
+          #adsbox{
+            display: none;
+          }
+        </style>
+    </head>
+    <body>
+          <header class="" id="header" id="home">
+            <div class="container">
+                <div class="row align-items-center justify-content-between d-flex">
+                  <div id="logo">
+                    <a href="{{ route('home') }}"><img src="{{ asset('assets/frontend/img/logo.png') }}" alt="" title="" /></a>
+                  </div>
+                  <nav id="nav-menu-container">
+                    <ul class="nav-menu">
+                      <li class="menu-active"><a href="{{ route('home') }}">Home</a></li>
+                      <li><a href="{{ route('listing.index') }}">Submit Link</a></li>
+                      <li><a href="{{ route('latest.index') }}">Latest Link</a></li>
+                      <li><a href="#">About Us</a></li>
+                      <li><a href="#">Contact</a></li>
+                        <li>
+                            @guest
+                                <li class="">
+                                    <a class="ticker-btn" href="" data-toggle="modal" data-target="#ModalLogin">{{ __('Login') }}</a>
+                                </li>
+                                @if (Route::has('register'))
+                                    <li class="">
+                                        <a class="ticker-btn" href="" data-toggle="modal" data-target="#ModalRegister">{{ __('Register') }}</a>
+                                    </li>
+                                @endif
+                            @else
+                                <li class="dropdown">
+                                    <a id="navbarDropdown" class=" dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        {{ Auth::user()->name }} <span class="caret"></span>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item ticker-btn" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                                {{ __('Logout') }}
+                                        </a><br/>
+                                        <a class="dropdown-item ticker-btn" href="{{ route('admin.dashboard') }}">
+                                                {{ __('Dashboard') }}
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                     </div>
-                                </nav>
-                            </div>
+                                </li>
+                            @endguest
+                        </li>                                                
+                    </ul>
+                  </nav><!-- #nav-menu-container -->                    
+                </div>
+            </div>
+          </header>
+        @yield('content')
+        <!-- start footer Area -->      
+        <footer class="footer-area section-gap">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3  col-md-12">
+                        <div class="single-footer-widget">
+                            <h6>Quick Links</h6>
+                            <ul class="footer-nav">
+                                <li><a href="{{ route('listing.index') }}">Submit Link</a></li>
+                                <li><a href="{{ route('latest.index') }}">Latest Link</a></li>
+                            </ul>
                         </div>
                     </div>
+                    <div class="col-lg-6  col-md-12">
+                        <div class="single-footer-widget newsletter">
+                            <h6>Newsletter</h6>
+                            <p>You can trust us. we only send promo offers, not a single spam.</p>
+                            <div id="mc_embed_signup">
+                                <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
+                                    <div class="form-group row" style="width: 100%">
+                                        <div class="col-lg-8 col-md-12">
+                                            <input name="EMAIL" placeholder="Enter Email" onfocus="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = ''" onblur="if (!window.__cfRLUnblockHandlers) return false; this.placeholder = 'Enter Email '" required="" type="email" data-cf-modified-f04d8ec4cdbd2d9f260c34aa-="">
+                                            <div style="position: absolute; left: -5000px;">
+                                                <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+                                            </div>
+                                        </div> 
+                                    
+                                        <div class="col-lg-4 col-md-12">
+                                            <button class="nw-btn primary-btn">Subscribe<span class="lnr lnr-arrow-right"></span></button>
+                                        </div> 
+                                    </div>      
+                                    <div class="info"></div>
+                                </form>
+                            </div>      
+                        </div>
+                    </div>
+                    <div class="col-lg-3  col-md-12">
+                        <div class="single-footer-widget mail-chimp">
+                            <h6 class="mb-20">Instragram Feed</h6>
+                            <ul class="instafeed d-flex flex-wrap">
+                                <li><img src="{{ asset('assets/frontend/img/i1.jpg') }}" alt=""></li>
+                                <li><img src="{{ asset('assets/frontend/img/i2.jpg') }}" alt=""></li>
+                                <li><img src="{{ asset('assets/frontend/img/i3.jpg') }}" alt=""></li>
+                                <li><img src="{{ asset('assets/frontend/img/i4.jpg') }}" alt=""></li>
+                                <li><img src="{{ asset('assets/frontend/img/i5.jpg') }}" alt=""></li>
+                                <li><img src="{{ asset('assets/frontend/img/i6.jpg') }}" alt=""></li>
+                                <li><img src="{{ asset('assets/frontend/img/i7.jpg') }}" alt=""></li>
+                                <li><img src="{{ asset('assets/frontend/img/i8.jpg') }}" alt=""></li>
+                            </ul>
+                        </div>
+                    </div>                      
                 </div>
-            </div>
-            @yield('content')
-        </main>
-    </div>
-    <footer class="main-block dark-bg">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="copyright">
-                        <p>Copyright &copy; 2019. All rights reserved | Codeburnerz Technologies</p>
-                        <ul>
-                            <li><a href="#"><span class="ti-facebook"></span></a></li>
-                            <li><a href="#"><span class="ti-twitter-alt"></span></a></li>
-                            <li><a href="#"><span class="ti-instagram"></span></a></li>
-                        </ul>
+
+                <div class="row footer-bottom d-flex justify-content-between">
+                    <p class="col-lg-8 col-sm-12 footer-text m-0 text-white">
+                        Copyright &copy; 2019 All Right Reserved. | Powered by Codeburnerz Technologies.
+                    </p>
+                    <div class="col-lg-4 col-sm-12 footer-social">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-dribbble"></i></a>
+                        <a href="#"><i class="fa fa-behance"></i></a>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+
 <!-- login modal -->
-<div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade container" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 500px;">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-body">
+    <div class="modal-content" style="">
+      <div class="modal-body py-5">
+        <h5 align="center" class="text-white">LOGIN</h5>
         <form method="POST" action="{{ route('login') }}">
           @csrf
           <div class="form-group row">
@@ -146,8 +171,7 @@
               </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label text-md-right"></label>
-              <div class="col-md-8 offset-md-4">
+              <div class="col-md-4 offset-md-4">
                   <div class="form-check">
                       <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                       <label class="form-check-label" for="remember">
@@ -157,9 +181,8 @@
               </div>
           </div>
           <div class="form-group row">
-            <label class="col-md-4 col-form-label text-md-right"></label>
-              <div class="col-md-8 offset-md-6">
-                  <button type="submit" class="btn btn-primary">
+              <div class="col-md-12 offset-md-4">
+                  <button type="submit" class="btn text-white" style="background-color: #ff3a6d;">
                       {{ __('Login') }}
                   </button>
                   @if (Route::has('password.request'))
@@ -175,16 +198,18 @@
   </div>
 </div>
 <!-- register modal -->
-<div class="modal fade" id="ModalRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade container" id="ModalRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 600px;">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body">
         <form method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="form-group row">
+            <div class="form-group row" style="padding-top: 40px;">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+
                 <div class="col-md-6">
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+
                     @error('name')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -192,10 +217,13 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
                 <div class="col-md-6">
                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+
                     @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -203,10 +231,13 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+
                 <div class="col-md-6">
                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+
                     @error('password')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -214,16 +245,19 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group row">
                 <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+
                 <div class="col-md-6">
                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                 </div>
             </div>
+
             <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-6">
+                <div class="col-md-5 offset-md-4">
                 </div>
-                <div class="col-md-6 offset-md-6">
+                <div class="col-md-7 offset-md-4">
                     <button type="submit" class="btn btn-primary">
                         {{ __('Register') }}
                     </button>
@@ -234,18 +268,24 @@
     </div>
   </div>
 </div>
-    <!-- Jquery -->
-    <script src="{{ asset('assets/frontend/js/jquery-3.2.1.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/popper.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/js/bootstrap.min.js') }}"></script>
-    <script>
-        $(window).scroll(function() {
-            if ($(window).scrollTop() > 100) {
-                $('.fixed').addClass('is-sticky');
-            } else {    
-                $('.fixed').removeClass('is-sticky');
-            };
-        });
-    </script>
+        <!-- End footer Area -->        
+        <script src="{{ asset('assets/frontend/js/vendor/jquery-2.2.4.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>
+        <script src="{{ asset('assets/frontend/js/popper.min.js') }}" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>
+        <script src="{{ asset('assets/frontend/js/vendor/bootstrap.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>          
+        <script type="f04d8ec4cdbd2d9f260c34aa-text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
+        <script src="{{ asset('assets/frontend/js/easing.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>            
+        <script src="{{ asset('assets/frontend/js/hoverIntent.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>
+        <script src="{{ asset('assets/frontend/js/superfish.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script> 
+        <script src="{{ asset('assets/frontend/js/jquery.ajaxchimp.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>
+        <script src="{{ asset('assets/frontend/js/jquery.magnific-popup.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script> 
+        <script src="{{ asset('assets/frontend/js/owl.carousel.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>          
+        <script src="{{ asset('assets/frontend/js/jquery.sticky.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>
+        <script src="{{ asset('assets/frontend/js/jquery.nice-select.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>            
+        <script src="{{ asset('assets/frontend/js/parallax.min.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>      
+        <script src="{{ asset('assets/frontend/js/mail-script.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>   
+        <script src="{{ asset('assets/frontend/js/main.js') }}" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>  
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13" type="f04d8ec4cdbd2d9f260c34aa-text/javascript"></script>
+        
+        <script src="{{ asset('assets/frontend/js/rocket-loader.min.js') }}" data-cf-settings="f04d8ec4cdbd2d9f260c34aa-|49" defer=""></script>
 </body>
 </html>

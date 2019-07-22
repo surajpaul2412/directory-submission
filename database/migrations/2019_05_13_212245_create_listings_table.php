@@ -25,6 +25,7 @@ class CreateListingsTable extends Migration
             $table->text('keyword');
             $table->string('verified_by')->nullable();
             $table->date('verified_on')->nullable();
+            $table->bigInteger('package_id')->unsigned()->nullable();
             $table->bigInteger('order_id')->unsigned()->nullable();
             $table->timestamps();
 
@@ -34,6 +35,10 @@ class CreateListingsTable extends Migration
 
             $table->foreign('category_id')
                   ->references('id')->on('categories')
+                  ->onDelete('cascade');
+
+            $table->foreign('package_id')
+                  ->references('id')->on('packages')
                   ->onDelete('cascade');
         });
     }

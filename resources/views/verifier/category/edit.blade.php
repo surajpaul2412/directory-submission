@@ -39,7 +39,11 @@
         @csrf
         <div class="form-group">
           <label for="name">Name:</label>
-          <input type="text" class="form-control" name="name" value={{ $category->name }} />
+          <input type="text" class="form-control" name="name" value={{ $category->name }} /><br>
+
+          <label for="icon">icon:</label>
+          <input type="text" class="form-control" name="icon" value={{ $category->icon }} />
+          <label>Refer: Base 64 code from freepik</label>
         </div>
         <button type="submit" class="btn btn-primary">Update</button>
       </form>

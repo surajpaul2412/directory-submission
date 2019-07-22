@@ -15,4 +15,8 @@ class Package extends Model
 	public function order(){
 		return $this->belongsTo('App\Order');
 	}
+
+	public function listing(){
+	    return $this->belongsTo('App\Listing');
+	}
 }

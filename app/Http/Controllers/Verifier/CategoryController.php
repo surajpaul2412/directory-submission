@@ -42,7 +42,8 @@ class CategoryController extends Controller
         'name'=>'required'
       ]);
       $category = new Category([
-        'name' => $request->get('name')
+        'name' => $request->get('name'),
+        'icon' => $request->get('icon')
       ]);
       $category->save();
       return redirect('/verifier/category')->with('success', 'category has been added');
@@ -56,7 +57,9 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view('category.show', compact('category'));
     }
 
     /**
@@ -87,6 +90,7 @@ class CategoryController extends Controller
 
       $category = Category::find($id);
       $category->name = $request->get('name');
+      $category->icon = $request->get('icon');
       $category->save();
 
       return redirect('/verifier/category')->with('success', 'category has been updated');

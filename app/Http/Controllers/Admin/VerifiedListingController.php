@@ -16,7 +16,7 @@ class VerifiedListingController extends Controller
      */
     public function index()
     {
-        $listings = Listing::all();
+        $listings = Listing::select("*")->whereNotNull('verified_by')->get();
         $category = Category::all();
 
         return view('admin.verifiedlisting.index', compact('listings','category'));
@@ -62,7 +62,9 @@ class VerifiedListingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $listing = Listing::find($id);
+
+        return view('admin.verifiedlisting.edit', compact('listing'));
     }
 
     /**
@@ -74,7 +76,15 @@ class VerifiedListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+      ]);
+
+      $listing = Listing::find($id);
+      $listing->verified_by = $request->get('verified_by');
+      $listing->verified_on = $request->get('verified_on');
+      $listing->save();
+
+      return redirect('/admin/verifiedlisting')->with('success', 'listing has been updated');
     }
 
     /**

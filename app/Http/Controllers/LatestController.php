@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Listing;
+use App\Category;
 
 class LatestController extends Controller
 {
@@ -14,7 +15,7 @@ class LatestController extends Controller
      */
     public function index()
     {
-        $latests = Listing::all();
+        $latests = Listing::select('id','name','email','category_id','title','URL','description','meta_description','keyword')->orderBy('id','desc')->whereNotNull('verified_by')->paginate(5);
 
         return view('latest.index', compact('latests'));
     }
@@ -48,7 +49,9 @@ class LatestController extends Controller
      */
     public function show($id)
     {
-        //
+        $listing = Listing::find($id);
+
+        return view('latest.show', compact('listing'));
     }
 
     /**

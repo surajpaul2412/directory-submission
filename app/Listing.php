@@ -17,6 +17,7 @@ class Listing extends Model
     'keyword',
     'verified_by',
     'verified_on',
+    'package_id',
     'order_id'
   ];
 
@@ -28,5 +29,11 @@ class Listing extends Model
   }
   public function category(){
     return $this->belongsTo('App\Category');
+  }
+  public function package(){
+    return $this->belongsTo('App\Package');
+  }
+  public function latestpage(){
+    return $this->belongsTo('App\Latestpage');
   }
 }

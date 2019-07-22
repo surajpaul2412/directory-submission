@@ -39,6 +39,12 @@
                     <li class="header">MAIN NAVIGATION</li>
 
                     @if(Request::is('admin*'))
+                        <li class="{{ Request::is('/home*') ? 'active' : '' }}">
+                            <a href="{{ route('home') }}">
+                                <i class="material-icons">home</i>
+                                <span>Home</span>
+                            </a>
+                        </li>
                         <li class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">
                             <a href="{{ route('admin.dashboard') }}">
                                 <i class="material-icons">dashboard</i>
@@ -97,6 +103,12 @@
                         </li>
                     @endif
                     @if(Request::is('verifier*'))
+                        <li class="{{ Request::is('home') ? 'active' : '' }}">
+                            <a href="{{ route('home') }}">
+                                <i class="material-icons">home</i>
+                                <span>Home</span>
+                            </a>
+                        </li>
                         <li class="{{ Request::is('verifier/dashboard') ? 'active' : '' }}">
                             <a href="{{ route('verifier.dashboard') }}">
                                 <i class="material-icons">dashboard</i>
@@ -113,6 +125,12 @@
                             <a href="{{ route('verifier.verifylisting.index') }}">
                                 <i class="material-icons">link</i>
                                 <span>Links for verify</span>
+                            </a>
+                        </li>
+                        <li class="{{ Request::is('verifier/verifiedlisting*') ? 'active' : '' }}">
+                            <a href="{{ route('verifier.verifiedlisting.index') }}">
+                                <i class="material-icons">link</i>
+                                <span>Verified Listings</span>
                             </a>
                         </li>
                         <li class="header">System</li>
@@ -136,7 +154,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2019 - .
+                    &copy; 2019 - Dashboard | Codeburnerz.
                 </div>
             </div>
             <!-- #Footer -->

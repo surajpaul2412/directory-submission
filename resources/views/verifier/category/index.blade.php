@@ -21,6 +21,7 @@
         <tr>
           <td>ID</td>
           <td>Name</td>
+          <td>icon</td>
           <td>Edit</td>
           <td>Delete</td>
         </tr>
@@ -30,6 +31,7 @@
         <tr>
             <td>{{$category->id}}</td>
             <td>{{$category->name}}</td>
+            <td><img src="{{$category->icon}}" width="30px" /></td>
             <td><a href="{{ route('verifier.category.edit',$category->id)}}" class="btn btn-primary">Edit</a></td>
             <td>
                 <form action="{{ route('verifier.category.destroy', $category->id)}}" method="post">

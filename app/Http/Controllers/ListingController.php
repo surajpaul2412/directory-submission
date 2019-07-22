@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Listing;
 use App\Category;
+use App\Package;
 
 class ListingController extends Controller
 {
@@ -16,8 +17,9 @@ class ListingController extends Controller
     public function index()
     {
         $categories = Category::all();
+        $packages = Package::all();
 
-        return view('listing.index', compact('categories'));
+        return view('listing.index', compact('categories','packages'));
     }
 
     /**
@@ -58,6 +60,7 @@ class ListingController extends Controller
         'keyword' => $request->get('keyword'),
         'verified_by' => $request->get('verified_by'),
         'verified_on' => $request->get('verified_on'),
+        'package_id' => $request->get('package_id'),
       ]);
       $listing->save();
       return redirect('/listing')->with('success', 'link has been added');
@@ -82,7 +85,9 @@ class ListingController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $listing = Listing::find($id);
+
+        // return view('admin.listing.edit', compact('listing'));
     }
 
     /**
@@ -94,7 +99,21 @@ class ListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      //   $request->validate([
+      //   'name'=>'required',
+      //   'email'=>'required',
+      //   'title'=>'required',
+      //   'URL'=>'required',
+      //   'description'=>'required',
+      //   'meta_description'=>'required',
+      //   'keyword'=>'required',
+      // ]);
+
+      // $listing = Listing::find($id);
+      // $listing->name = $request->get('name');
+      // $listing->save();
+
+      // return redirect('/admin/listing')->with('success', 'Listing has been updated');
     }
 
     /**
