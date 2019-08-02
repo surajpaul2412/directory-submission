@@ -39,7 +39,7 @@ class ResetPasswordController extends Controller
         {
             $this->redirectTo = route('admin.dashboard');
         }
-        elseif (Auth::check() && Auth::user()->role->id == 2) 
+        else (Auth::check() && Auth::user()->role->id == 2) 
         {
             $this->redirectTo = route('verifier.dashboard');
         }

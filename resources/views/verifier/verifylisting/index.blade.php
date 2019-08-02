@@ -26,8 +26,6 @@
           <td>description</td>
           <td>meta_description</td>
           <td>keyword</td>
-          <td><strong>Verified By</strong></td>
-          <td><strong>Verified On</strong></td>
           <td><strong>Verify</strong></td>
         </tr>
     </thead>
@@ -42,12 +40,31 @@
             <td>{{$listing->description}}</td>
             <td>{{$listing->meta_description}}</td>
             <td>{{$listing->keyword}}</td>
-            <td><strong>{{$listing->verified_by}}</strong></td>
-            <td><strong>{{$listing->verified_on}}</strong></td>
-            <td><a href="{{ route('verifier.verifylisting.edit',$listing->id)}}" class="btn btn-primary">Verify</a></td>
+            
+
+            <form method="post" action="{{ route('verifier.verifylisting.update', $listing->id) }}">
+              @method('PATCH')
+              @csrf
+              <td style="display: none;">
+                <div><input type="text" class="form-control" name="verified_by" placeholder="{{ Auth::user()->name }}" value="{{ Auth::user()->name }}"></div>
+              </td>
+              <td style="display: none;">
+                <div><input type="text" class="form-control" name="verified_on" placeholder="" id="demo" disabled></div>
+              </td>
+              <td><button type="submit" class="btn btn-primary">Verify</button></td>
+            </form>
+            <!-- <td><a href="{{ route('verifier.verifylisting.edit',$listing->id)}}" class="btn btn-primary">Verify</a></td> -->
         </tr>
         @endforeach
     </tbody>
   </table>
 <div>
+
+
+
+
+<script>
+  var d = new Date();
+  document.getElementById("demo").placeholder = d;
+</script>
 @endsection

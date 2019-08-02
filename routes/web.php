@@ -1,7 +1,4 @@
 <?php
-// Route::get('/', function () {
-//     return view('landing.home');
-// });
 
 Route::get('/', 'LandingController@index');
 
@@ -31,3 +28,15 @@ Route::group(['as'=>'verifier.','prefix'=>'verifier','namespace'=>'Verifier','mi
 Route::resource('/listing', 'ListingController');
 Route::resource('/latest', 'LatestController');
 Route::resource('/homecategory', 'HomeCategoryController');
+Route::get('aboutUs', function () {
+    return view('aboutUs.index');
+});
+Route::get('contactUs', function () {
+    return view('contactUs.index');
+});
+Route::get('privacyPolicy', function () {
+    return view('privacyPolicy.index');
+});
+Route::get('terms&conditions', function () {
+    return view('terms&conditions.index');
+});

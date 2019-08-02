@@ -1,6 +1,9 @@
 @extends('layouts.frontend.app')
 @section('content')
-    <section class="slider d-flex align-items-center pt-5" style="background-color: #7d63f7;margin-top: 0px;">
+<div class="media-top-space">
+  <img src="{{ asset('assets/frontend/img/banner.jpg') }}" width="100%">
+</div>
+    <section class="slider d-flex align-items-center mt-0">
         <!-- <img src="images/slider.jpg" class="img-fluid" alt="#"> -->
         <div class="container">
             <div class="row d-flex">
@@ -17,7 +20,7 @@
                                           {{ session()->get('success') }}  
                                         </div><br />
                                       @endif
-                                      <section class="card text-dark p-5">
+                                      <section class="card text-dark p-5" style="background: #efefef;">
                                         <div class="row">
                                           <div class="col-md-12">
                                             <p>

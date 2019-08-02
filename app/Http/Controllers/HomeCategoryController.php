@@ -38,7 +38,7 @@ class HomeCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
@@ -56,7 +56,10 @@ class HomeCategoryController extends Controller
         $check = Category::find($id)->id;
         $latests = Listing::select('id','name','email','category_id','title','URL','description','meta_description','keyword')->orderBy('id','desc')->where('category_id',$check)->get();
 
-        return view('category.show', compact('categories','latests'));
+        $latest = Listing::where('category_id',$check)->first();
+       
+
+        return view('category.show', compact('categories','latests','latest'));
     }
 
     /**

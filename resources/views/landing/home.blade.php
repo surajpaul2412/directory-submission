@@ -1,6 +1,5 @@
 @extends('layouts.frontend.app')
 @section('content')
-
         <!-- start banner Area -->
         <section class="banner-area relative" id="home">    
             <div class="overlay overlay-bg"></div>
@@ -26,13 +25,15 @@
                                     </div>                                      
                                 </div>
                                 <div class="col-lg-2 form-cols">
+                                    <a href="latest#latest">
                                     <button type="button" class="btn btn-info">
                                       <span class="lnr lnr-magnifier"></span> Search
                                     </button>
+                                    </a>
                                 </div>                              
                             </div>
                         </form> 
-                        <p class="text-white"> <span>Search by tags:</span> Tecnology, Business, Consulting, IT Company, Design, Development</p>
+                        <p class="text-white"> <span>Search by tags:</span>@foreach($categories as $category) {{ $category->name }}, @endforeach</p>
                     </div>                                          
                 </div>
             </div>
@@ -64,20 +65,24 @@
                         </a>
                     </div>
                     <div class="col-lg-3 col-md-6">
+                        <a class="text-dark" href="{{ route('latest.index') }}">
                         <div class="single-feature">
                             <h4>Top Link</h4>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing.
                             </p>
                         </div>
+                        </a>
                     </div>
                     <div class="col-lg-3 col-md-6">
+                        <a class="text-dark" href="aboutUs">
                         <div class="single-feature">
                             <h4>About Us</h4>
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipisicing.
                             </p>
                         </div>
+                        </a>
                     </div>                                                                      
                 </div>
             </div>  
@@ -185,54 +190,16 @@
                     </div>
                 </div>                      
                 <div class="row">
+                    @foreach($categories as $category)
                     <div class="col-lg-2 col-md-4 col-sm-6">
                         <div class="single-fcat">
-                            <a href="category.html">
-                                <img src="{{ asset('assets/frontend/img/o1.png') }}" alt="">
+                            <a href="{{ route('homecategory.show',$category->id)}}">
+                                <img src="{{$category->icon}}" width="60px" />
                             </a>
-                            <p>Accounting</p>
+                            <p>{{$category->name}}</p>
                         </div>
                     </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="single-fcat">
-                            <a href="category.html">
-                                <img src="{{ asset('assets/frontend/img/o2.png') }}" alt="">
-                            </a>
-                            <p>Development</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="single-fcat">
-                            <a href="category.html">
-                                <img src="{{ asset('assets/frontend/img/o3.png') }}" alt="">
-                            </a>
-                            <p>Technology</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="single-fcat">
-                            <a href="category.html">
-                                <img src="{{ asset('assets/frontend/img/o4.png') }}" alt="">
-                            </a>
-                            <p>Media & News</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="single-fcat">
-                            <a href="category.html">
-                                <img src="{{ asset('assets/frontend/img/o5.png') }}" alt="">
-                            </a>
-                            <p>Medical</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-sm-6">
-                        <div class="single-fcat">
-                            <a href="category.html">
-                                <img src="{{ asset('assets/frontend/img/o6.png') }}" alt="">
-                            </a>
-                            <p>Goverment</p>
-                        </div>          
-                    </div>                                                                                                          
+                    @endforeach                  
                 </div>
             </div>  
         </section>
@@ -253,7 +220,7 @@
                                         <h6>Premium</h6>                 
                                     </div>
                                     <ul class="btns">
-                                        <li><a href="#">Visit listing</a></li>
+                                        <li><a href="{{ route('latest.show',$latest->id)}}">Visit listing</a></li>
                                     </ul>
                                 </div>
                                 <p>
@@ -284,7 +251,7 @@
                             <h4>Categories</h4><hr>
                             <ul class="cat-list">
                                 @foreach($categories as $category)
-                                    <li><a class="justify-content-between d-flex" href="{{ route('homecategory.show',$category->id)}}"><p>{{ $category->name }}</p></a></li>
+                                    <li><a class="justify-content-between d-flex" href="{{ route('homecategory.index')}}"><p>{{ $category->name }}</p></a></li>
                                 @endforeach
                             </ul>
                         </div>

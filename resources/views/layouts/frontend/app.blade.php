@@ -22,6 +22,11 @@
           #adsbox{
             display: none;
           }
+          #ticker-btn{
+            background: #49e4fa;
+            color: #fff;
+            padding: 6px 20px !important;
+          }
         </style>
     </head>
     <body>
@@ -36,16 +41,17 @@
                       <li class="menu-active"><a href="{{ route('home') }}">Home</a></li>
                       <li><a href="{{ route('listing.index') }}">Submit Link</a></li>
                       <li><a href="{{ route('latest.index') }}">Latest Link</a></li>
-                      <li><a href="#">About Us</a></li>
-                      <li><a href="#">Contact</a></li>
-                        <li>
+                      <li><a href="aboutUs">About Us</a></li>
+                      <li><a href="privacyPolicy">Privacy Policy</a></li>
+                      <li><a href="contactUs">Contact</a></li>
+                      <li>
                             @guest
                                 <li class="">
-                                    <a class="ticker-btn" href="" data-toggle="modal" data-target="#ModalLogin">{{ __('Login') }}</a>
+                                    <a id="ticker-btn" href="" data-toggle="modal" data-target="#ModalLogin">{{ __('Login') }}</a>
                                 </li>
                                 @if (Route::has('register'))
                                     <li class="">
-                                        <a class="ticker-btn" href="" data-toggle="modal" data-target="#ModalRegister">{{ __('Register') }}</a>
+                                        <a id="ticker-btn" href="" data-toggle="modal" data-target="#ModalRegister">{{ __('Register') }}</a>
                                     </li>
                                 @endif
                             @else
@@ -57,9 +63,15 @@
                                         <a class="dropdown-item ticker-btn" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                 {{ __('Logout') }}
                                         </a><br/>
+                                        @if (Auth::check() && Auth::user()->role->id == 1)
                                         <a class="dropdown-item ticker-btn" href="{{ route('admin.dashboard') }}">
                                                 {{ __('Dashboard') }}
                                         </a>
+                                        @elseif (Auth::check() && Auth::user()->role->id == 2)
+                                        <a class="dropdown-item ticker-btn" href="{{ route('verifier.dashboard') }}">
+                                                {{ __('Dashboard') }}
+                                        </a>
+                                        @endif
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             @csrf
                                         </form>
@@ -81,6 +93,7 @@
                         <div class="single-footer-widget">
                             <h6>Quick Links</h6>
                             <ul class="footer-nav">
+                                <li><a href="{{ route('home') }}">Home</a></li>
                                 <li><a href="{{ route('listing.index') }}">Submit Link</a></li>
                                 <li><a href="{{ route('latest.index') }}">Latest Link</a></li>
                             </ul>
@@ -89,7 +102,7 @@
                     <div class="col-lg-6  col-md-12">
                         <div class="single-footer-widget newsletter">
                             <h6>Newsletter</h6>
-                            <p>You can trust us. we only send promo offers, not a single spam.</p>
+                            <p>Subscribe our news letter.</p>
                             <div id="mc_embed_signup">
                                 <form target="_blank" novalidate="true" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="form-inline">
                                     <div class="form-group row" style="width: 100%">
@@ -109,18 +122,12 @@
                             </div>      
                         </div>
                     </div>
-                    <div class="col-lg-3  col-md-12">
+                    <div class="col-lg-3 col-md-12">
                         <div class="single-footer-widget mail-chimp">
-                            <h6 class="mb-20">Instragram Feed</h6>
-                            <ul class="instafeed d-flex flex-wrap">
-                                <li><img src="{{ asset('assets/frontend/img/i1.jpg') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/frontend/img/i2.jpg') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/frontend/img/i3.jpg') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/frontend/img/i4.jpg') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/frontend/img/i5.jpg') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/frontend/img/i6.jpg') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/frontend/img/i7.jpg') }}" alt=""></li>
-                                <li><img src="{{ asset('assets/frontend/img/i8.jpg') }}" alt=""></li>
+                            <h6 class="mb-20">Useful Links</h6>
+                            <ul class="footer-nav">
+                              <li><a href="privacyPolicy">Privacy Policy</a></li>
+                              <li><a href="terms&conditions">Terms & Conditions</a></li>
                             </ul>
                         </div>
                     </div>                      
@@ -133,8 +140,7 @@
                     <div class="col-lg-4 col-sm-12 footer-social">
                         <a href="#"><i class="fa fa-facebook"></i></a>
                         <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-dribbble"></i></a>
-                        <a href="#"><i class="fa fa-behance"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
                     </div>
                 </div>
             </div>
@@ -144,8 +150,8 @@
 <div class="modal fade container" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 500px;">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content" style="">
-      <div class="modal-body py-5">
-        <h5 align="center" class="text-white">LOGIN</h5>
+      <div class="modal-body py-4">
+        <h4 align="center" class="text-dark">LOGIN</h4><hr>
         <form method="POST" action="{{ route('login') }}">
           @csrf
           <div class="form-group row">
@@ -181,12 +187,12 @@
               </div>
           </div>
           <div class="form-group row">
-              <div class="col-md-12 offset-md-4">
-                  <button type="submit" class="btn text-white" style="background-color: #ff3a6d;">
+              <div class="col-md-12 offset-md-2">
+                  <button type="submit" class="btn text-white" style="background-color: #49e4fa;">
                       {{ __('Login') }}
                   </button>
                   @if (Route::has('password.request'))
-                      <a class="btn btn-link" href="{{ route('password.request') }}">
+                      <a class="btn btn-link" data-toggle="modal" data-target="#ModalReset">
                           {{ __('Forgot Your Password?') }}
                       </a>
                   @endif
@@ -202,9 +208,10 @@
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-body">
+        <h4 align="center" class="text-dark">Register Here</h4><hr>
         <form method="POST" action="{{ route('register') }}">
             @csrf
-            <div class="form-group row" style="padding-top: 40px;">
+            <div class="form-group row pt-3">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                 <div class="col-md-6">
@@ -255,15 +262,48 @@
             </div>
 
             <div class="form-group row mb-0">
-                <div class="col-md-5 offset-md-4">
-                </div>
-                <div class="col-md-7 offset-md-4">
-                    <button type="submit" class="btn btn-primary">
+                <div class="col-md-6 offset-md-4">
+                    <button type="submit" class="btn text-white" style="background-color: #49e4fa;">
                         {{ __('Register') }}
                     </button>
                 </div>
             </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Reset Password -->
+<div class="modal fade container" id="ModalReset" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="max-width: 600px;">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content" style="">
+      <div class="modal-body py-4">
+        <h4 align="center" class="text-dark">Reset Password</h4><hr>
+                      <form method="POST" action="{{ route('password.email') }}">
+                        @csrf
+
+                        <div class="form-group row">
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-6 offset-md-4">
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Send Password Reset Link') }}
+                                </button>
+                            </div>
+                        </div>
+                    </form>
       </div>
     </div>
   </div>

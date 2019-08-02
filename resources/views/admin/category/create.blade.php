@@ -40,7 +40,7 @@
               <label for="name">Name:</label>
               <input type="text" class="form-control" name="name"/><br/>
 
-              <label for="name">Icon:</label>
+              <label for="icon">Icon:</label>
               <input type="text" class="form-control" name="icon"/>
               <label>Refer: Base 64 code from freepik</label>
           </div>

@@ -4156,3 +4156,8 @@ body.mobile-nav-active #mobile-nav-toggle {
                End Blog Details  Page style
 ################
 */
+@media only screen and (max-width: 600px) {
+    .media-top-space{
+      padding-top: 60px;
+    }
+}

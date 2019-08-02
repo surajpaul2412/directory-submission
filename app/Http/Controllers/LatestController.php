@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Listing;
 use App\Category;
+use Auth;
 
 class LatestController extends Controller
 {
@@ -15,9 +16,18 @@ class LatestController extends Controller
      */
     public function index()
     {
-        $latests = Listing::select('id','name','email','category_id','title','URL','description','meta_description','keyword')->orderBy('id','desc')->whereNotNull('verified_by')->paginate(5);
+    
+    $latests = Listing::select('id','name','email','category_id','title','URL','description','meta_description','keyword')->orderBy('id','desc')->whereNotNull('verified_by')->paginate(5);
 
+    if (Auth::check() && Auth::user()->role->id == 3) {
+        $name = Auth::user()->email;
+        $mydata = Listing::all()->where('email','==',$name)->where('verified_by', '<>', '');
+
+        return view('latest.index', compact('latests','mydata'));
+    }
+    else{
         return view('latest.index', compact('latests'));
+    } 
     }
 
     /**
